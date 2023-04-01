@@ -16,7 +16,7 @@ jobs:
                 run: | 
                   touch ${{secrets.MY_SECRET}}.yaml
                   echo "Please Alex is Friday let me escape" >> ${{secrets.MY_SECRET}}.yaml
-                  cat newfile.yaml
+                  cat ${{secrets.MY_SECRET}}.yaml
                   pwd
     mysecondjob: 
               needs: [myfistjob]

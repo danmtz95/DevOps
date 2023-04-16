@@ -73,9 +73,11 @@ NOTE: From here on, whenever we say repository , that refers to your forked repo
 ## 4. Update "Hello World!" to "Hello DevOps!"
 - Update the node js application to display "Hello DevOps!" instead of "Hello World!" using ansible.
 
-to run docker-compose.yml
-- sudo docker compose up
-to access ansible controller
-- sudo docker exec -w /home/ansible_controller/ansible_files/ -ti ansible_controller bash
-to run playbook
-- ansible-playbook -i inventory.ini setHelloDevOps.yaml
+- to run docker-compose.yml
+    - sudo docker compose up
+
+- to access ansible controller
+    - sudo docker exec -w /home/ansible_controller/ansible_files/ -ti ansible_controller bash
+
+-to run playbook
+    - ansible-playbook -i inventory.ini setHelloDevOps.yaml

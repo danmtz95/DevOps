@@ -1,0 +1,50 @@
+name: Bootcamp workflow
+
+on:
+    workflow_dispatch:
+    push:
+        branches: [ "main" ]
+    pull_request:
+        branches: [ "main" ]
+
+jobs:
+    #install app and run tests
+    test:
+        name: Test - Dockerize - Push image
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+                # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        steps:
+        - uses: actions/checkout@v3
+        - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+        - name: Install dependencies
+#           run: npm ci didnt work, package jsons not in sync, i couldnt fix that problem so instead
+          run: npm install
+          working-directory: ./capstone_project/hello-world
+        - name: Run tests cases
+          run: npm test
+          working-directory: ./capstone_project/hello-world
+        - name: Log in to docker
+          env:
+            DOCKER_USER: ${{secrets.DOCKER_USER}}
+            DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          run: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          if: success()
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v2
+          if: success()
+        - name: Build and push
+          uses: docker/build-push-action@v4
+          with:
+            context: ./capstone_project/hello-world
+#             file: ./Dockerfile
+            push: true
+            tags: ${{secrets.DOCKER_USER}}/helloworld-bootcamp-docker:latest
+          if: success()
+

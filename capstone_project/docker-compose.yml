@@ -1,0 +1,19 @@
+services:
+  ansible:
+    build:
+      context: ./ansible_base
+      dockerfile: Dockerfile
+    container_name: ansible_controller
+    volumes:
+      - type: bind
+        source: ./ansible_files
+        target: /home/ansible_controller/ansible_files
+  target1:
+    build:
+      context: ./hello-world
+      dockerfile: Dockerfile
+    container_name: helloworld_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - /usr/src/app/node_modules

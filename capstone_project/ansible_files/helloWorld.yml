@@ -1,0 +1,12 @@
+- name: My helloworld modify playbook
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ping Check using ping module
+      ping:
+
+    - name: Replace "Hello DevOps!" with "Hello World!"
+      replace:
+        path: /usr/src/app/src/App.js
+        regexp: 'Hello DevOps!'
+        replace: 'Hello World!'

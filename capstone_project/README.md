@@ -79,5 +79,5 @@ NOTE: From here on, whenever we say repository , that refers to your forked repo
 - to access ansible controller
     - sudo docker exec -w /home/ansible_controller/ansible_files/ -ti ansible_controller bash
 
--to run playbook
+- to run playbook
     - ansible-playbook -i inventory.ini setHelloDevOps.yaml

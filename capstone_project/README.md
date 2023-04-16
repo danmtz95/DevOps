@@ -67,7 +67,8 @@ NOTE: From here on, whenever we say repository , that refers to your forked repo
      - will trigger on push and on pull request
      - Run the tests
      - Only if tests are success, build the container
-1 [Docker Hub Image](https://hub.docker.com/repository/docker/daniboee/helloworld-bootcamp-docker)
+
+1 - [Docker Hub Image](https://hub.docker.com/repository/docker/daniboee/helloworld-bootcamp-docker)
 
 ## 4. Update "Hello World!" to "Hello DevOps!"
 - Update the node js application to display "Hello DevOps!" instead of "Hello World!" using ansible.
